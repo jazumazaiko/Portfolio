@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sygnorey Azuma · IT Portfolio</title>
+
+    <!-- Bootstrap CSS (local from Composer) -->
+    <link
+      rel="stylesheet"
+      href="vendor/npm-asset/bootstrap/dist/css/bootstrap.min.css"
+    />
+
+    <!-- Bootstrap Icons (local from Composer) -->
+    <link
+      rel="stylesheet"
+      href="vendor/npm-asset/bootstrap-icons/font/bootstrap-icons.css"
+    />
+
+    <!-- Google Fonts for a creative touch -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom creative styles -->
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+      }
+
+      /* Gradient text for name */
+      .gradient-text {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Hero section with subtle animated gradient */
+      .hero-section {
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3); /* dark overlay for readability */
+        z-index: 1;
+      }
+
+      .hero-section .container {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-section .btn-primary {
+        background-color: white;
+        color: #333;
+        border: none;
+        transition: all 0.3s ease;
+      }
+
+      .hero-section .btn-primary:hover {
+        background-color: #f0f0f0;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Card hover effects */
+      .card {
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        border-radius: 15px;
+        overflow: hidden;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1) !important;
+      }
+
+      /* Skill items with icons */
+      .skill-item {
+        background: #f1f5f9;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        display: inline-block;
+        margin: 0.25rem;
+        transition: background 0.3s ease;
+      }
+
+      .skill-item:hover {
+        background: #e2e8f0;
+      }
+
+      /* Training cards */
+      .training-card {
+        border-left: 5px solid #667eea;
+        transition: all 0.3s ease;
+      }
+
+      .training-card:hover {
+        border-left-color: #764ba2;
+      }
+
+      /* Contact section with gradient */
+      .contact-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .contact-section a {
+        transition: opacity 0.3s ease;
+      }
+
+      .contact-section a:hover {
+        opacity: 0.8;
+      }
+
+      /* Footer */
+      .footer {
+        background: #1e293b;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 
+      ======================
+      STICKY NAVIGATION BAR
+      ======================
+    -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+    >
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">
+          <i class="bi bi-code-square me-2 text-primary"></i>Portfolio
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#trainings">Trainings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 
+      ======================
+      HERO SECTION (HOME)
+      ======================
+      Picture on left, details on right, with creative gradient
+    -->
+    <section id="home" class="hero-section py-5">
+      <div class="container py-5">
+        <div class="row align-items-center">
+          <!-- Left column: picture -->
+          <div class="col-md-4 text-center text-md-start mb-4 mb-md-0">
+            <img
+              src="mypicture.png"
+              alt="Sygnorey Azuma"
+              class="rounded-circle img-fluid border border-4 border-white shadow"
+              style="width: 330px; height: 330px; object-fit: cover"
+            />
+          </div>
+          <!-- Right column: name, title, address, button -->
+          <div class="col-md-8 text-white">
+            <h1 class="display-4 fw-bold gradient-text">
+              Sygnorey Jazze Q. Azuma
+            </h1>
+            <p class="lead">
+              Junior Web Developer (JAVASCRIPT/HTML/CSS/PHP/PYTHON)
+            </p>
+            <p class="mt-3">
+              <i class="bi bi-geo-alt-fill me-2"></i>Brgy. Dongalo, San
+              Ildefonso, Ilocos Sur
+            </p>
+            <a
+              href="Sygnorey_Jazze_Q_Azuma_CV.pdf"
+              download
+              class="btn btn-light btn-lg mt-3 px-5 py-3 rounded-pill shadow"
+            >
+              <i class="bi bi-download me-2"></i>Download CV
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 
+      ======================
+      ABOUT SECTION (Objective + Education)
+      ======================
+    -->
+    <section id="about" class="py-5">
+      <div class="container py-4">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2 class="display-6 fw-semibold mb-4">
+              <i class="bi bi-bullseye text-primary me-3"></i>Career Objective
+            </h2>
+            <p class="lead text-secondary">
+              Seeking an opportunity where I can apply my technical knowledge,
+              develop hands-on skills, and will allow me to enhance my
+              problem-solving abilities, gain real-world experience, and support
+              organizational goals.
+            </p>
+          </div>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col-12">
+            <h2 class="display-6 fw-semibold mb-4">
+              <i class="bi bi-mortarboard text-primary me-3"></i>Educational
+              Background
+            </h2>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <i class="bi bi-building fs-1 text-primary me-3"></i>
+                  <h5 class="card-title mb-0">
+                    University of Northern Philippines (UNP)
+                  </h5>
+                </div>
+                <h6 class="card-subtitle mb-2 text-muted">
+                  Bachelor of Information Technology
+                </h6>
+                <p class="card-text">2022 – 2024 · City of Vigan, Ilocos Sur</p>
+                <ul class="list-unstyled">
+                  <li>
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>1st
+                    year (A.Y. 2022-2023)
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>2nd
+                    year (A.Y. 2023-2024)
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>3rd
+                    year (A.Y. 2023-2024)
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <i class="bi bi-building fs-1 text-primary me-3"></i>
+                  <h5 class="card-title mb-0">
+                    Divine Word College of Vigan (DWCV)
+                  </h5>
+                </div>
+                <h6 class="card-subtitle mb-2 text-muted">
+                  Junior High School – Senior High School
+                </h6>
+                <p class="card-text">2016 – 2022 · City of Vigan, Ilocos Sur</p>
+                <p class="mb-0">
+                  <span class="badge bg-primary">With Honors</span> (S.Y.
+                  2021-2022, Senior High School)
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <i class="bi bi-building fs-1 text-primary me-3"></i>
+                  <h5 class="card-title mb-0">Sagsagat Elementary School</h5>
+                </div>
+                <h6 class="card-subtitle mb-2 text-muted">Elementary</h6>
+                <p class="card-text">2010 – 2016 · San Ildefonso, Ilocos Sur</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 
+      ======================
+      SKILLS SECTION (Technical & Soft)
+      ======================
+    -->
+    <section id="skills" class="py-5 bg-light">
+      <div class="container py-4">
+        <div class="text-center mb-5">
+          <h2 class="display-6 fw-semibold">
+            <i class="bi bi-stars text-primary me-3"></i>Skills
+          </h2>
+          <p class="text-muted">What I bring to the table</p>
+        </div>
+        <div class="row g-4">
+          <!-- Technical Skills -->
+          <div class="col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-4">
+                  <i class="bi bi-laptop display-6 text-primary me-3"></i>
+                  <h4 class="mb-0">Technical Skills</h4>
+                </div>
+                <div class="d-flex flex-wrap">
+                  <span class="skill-item"
+                    ><i class="bi bi-code-slash me-1"></i>C#</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-code-slash me-1"></i>HTML5</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-code-slash me-1"></i>BOOTSTRAP</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-code-slash me-1"></i>PYTHON</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-code-slash me-1"></i>MYSQL</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-database me-1"></i>XAMPP</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-database me-1"></i>HEIDISQL</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-code-slash me-1"></i>NODE.JS</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-code-slash me-1"></i>JAVASCRIPT</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-code-slash me-1"></i>PHP</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-code-slash me-1"></i>JAVA</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-code-slash me-1"></i>VB.NET</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-palette me-1"></i>Graphic Design</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Soft Skills -->
+          <div class="col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-4">
+                  <i class="bi bi-people display-6 text-primary me-3"></i>
+                  <h4 class="mb-0">Soft Skills</h4>
+                </div>
+                <div class="d-flex flex-wrap">
+                  <span class="skill-item"
+                    ><i class="bi bi-lightbulb me-1"></i>Problem-solving</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-chat me-1"></i>Communication</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-people me-1"></i>Teamwork</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-graph-up me-1"></i>Analytical</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-brush me-1"></i>Creative</span
+                  >
+                  <span class="skill-item"
+                    ><i class="bi bi-arrow-repeat me-1"></i>Adaptability</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 
+      ======================
+      TRAININGS & SEMINARS SECTION
+      ======================
+    -->
+    <section id="trainings" class="py-5">
+      <div class="container py-4">
+        <div class="text-center mb-5">
+          <h2 class="display-6 fw-semibold">
+            <i class="bi bi-journal-bookmark-fill text-primary me-3"></i
+            >Trainings & Seminars
+          </h2>
+          <p class="text-muted">Continuous learning and development</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm training-card">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <i class="bi bi-cpu fs-1 text-primary me-3"></i>
+                  <h5 class="card-title mb-0">DYCI Robotics Seminar</h5>
+                </div>
+                <p class="text-muted mb-1">
+                  <i class="bi bi-geo-alt me-1"></i>Bocaue, Bulacan
+                </p>
+                <p class="text-muted">
+                  <i class="bi bi-calendar me-1"></i>April 23, 2025
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm training-card">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <i class="bi bi-lightning-charge fs-1 text-primary me-3"></i>
+                  <h5 class="card-title mb-0">HYTECH POWER INC. Seminar</h5>
+                </div>
+                <p class="text-muted mb-1">
+                  <i class="bi bi-geo-alt me-1"></i>Quezon City, Metro Manila
+                </p>
+                <p class="text-muted">
+                  <i class="bi bi-calendar me-1"></i>April 23, 2025
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm training-card">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <i class="bi bi-wifi fs-1 text-primary me-3"></i>
+                  <h5 class="card-title mb-0">Internet of Things</h5>
+                </div>
+                <p class="text-muted mb-1">
+                  <i class="bi bi-geo-alt me-1"></i>Quezon City, Metro Manila
+                </p>
+                <p class="text-muted">
+                  <i class="bi bi-calendar me-1"></i>April 24, 2025
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm training-card">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <i class="bi bi-shield-lock fs-1 text-primary me-3"></i>
+                  <h5 class="card-title mb-0">Cyber Security Seminar</h5>
+                </div>
+                <p class="text-muted mb-1">
+                  <i class="bi bi-geo-alt me-1"></i>University of Makati,
+                  Taguig, Metro Manila
+                </p>
+                <p class="text-muted">
+                  <i class="bi bi-calendar me-1"></i>April 25, 2025
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm training-card">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <i class="bi bi-brush fs-1 text-primary me-3"></i>
+                  <h5 class="card-title mb-0">
+                    Design Made Easy: A Beginner's Guide to Canva
+                  </h5>
+                </div>
+                <p class="text-muted mb-1">
+                  <i class="bi bi-globe me-1"></i>Online Seminar
+                </p>
+                <p class="text-muted">
+                  <i class="bi bi-calendar me-1"></i>May 24, 2025
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 
+      ======================
+      CONTACT SECTION
+      ======================
+    -->
+    <section id="contact" class="contact-section py-5 text-white">
+      <div class="container py-4">
+        <div class="row">
+          <div class="col-lg-6 mx-auto text-center">
+            <h2 class="display-6 fw-semibold mb-4">
+              <i class="bi bi-envelope-paper me-3"></i>Get In Touch
+            </h2>
+            <p class="lead mb-5">
+              I'm currently looking for opportunities to grow and contribute.
+              Feel free to reach out!
+            </p>
+          </div>
+        </div>
+        <div class="row g-4 justify-content-center">
+          <div class="col-sm-6 col-md-4">
+            <div class="d-flex align-items-center justify-content-center">
+              <i class="bi bi-envelope-fill fs-3 me-3"></i>
+              <div>
+                <h6 class="mb-0">Email</h6>
+                <a
+                  href="mailto:sygnoreyjazze@gmail.com"
+                  class="text-white-50 text-decoration-none"
+                >
+                  sygnoreyjazze@gmail.com
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <div class="d-flex align-items-center justify-content-center">
+              <i class="bi bi-telephone-fill fs-3 me-3"></i>
+              <div>
+                <h6 class="mb-0">Phone</h6>
+                <a
+                  href="tel:+639278016602"
+                  class="text-white-50 text-decoration-none"
+                >
+                  09278016602
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <div class="d-flex align-items-center justify-content-center">
+              <i class="bi bi-geo-alt-fill fs-3 me-3"></i>
+              <div>
+                <h6 class="mb-0">Address</h6>
+                <span class="text-white-50"
+                  >Brgy. Dongalo, San Ildefonso, Ilocos Sur</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Contact form (optional) -->
+        <div class="row mt-5 justify-content-center">
+          <div class="col-md-8 col-lg-6">
+            <form action="https://formspree.io/f/xojnykny" method="POST">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    name="name"
+                    class="form-control bg-transparent border-white text-white"
+                    placeholder="Your name"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control bg-transparent border-white text-white"
+                    placeholder="Your email"
+                    required
+                  />
+                </div>
+                <div class="col-12">
+                  <textarea
+                    name="message"
+                    class="form-control bg-transparent border-white text-white"
+                    rows="4"
+                    placeholder="Your message"
+                    required
+                  ></textarea>
+                </div>
+                <div class="col-12 text-center">
+                  <button
+                    type="submit"
+                    class="btn btn-light px-5 py-2 rounded-pill"
+                  >
+                    <i class="bi bi-send me-2"></i>Send Message
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 
+      ======================
+      FOOTER
+      ======================
+    -->
+    <footer class="footer py-4 text-white-50 text-center">
+      <div class="container">
+        <p class="mb-0">
+          <i class="bi bi-c-circle me-1"></i> 2025 Sygnorey Jazze Q. Azuma.
+          Built with Bootstrap 5 and creativity.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle (local from Composer) -->
+    <script src="vendor/npm-asset/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "require": {
+    "npm-asset/bootstrap": "^5.3",
+    "npm-asset/bootstrap-icons": "^1.10"
+  }
+}

@@ -1,0 +1,36 @@
+{
+    "packages": [
+        {
+            "name": "npm-asset/bootstrap",
+            "version": "5.3.8",
+            "version_normalized": "5.3.8.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/bootstrap/-/bootstrap-5.3.8.tgz"
+            },
+            "type": "npm-asset",
+            "installation-source": "dist",
+            "license": [
+                "MIT"
+            ],
+            "install-path": "../npm-asset/bootstrap"
+        },
+        {
+            "name": "npm-asset/bootstrap-icons",
+            "version": "1.13.1",
+            "version_normalized": "1.13.1.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/bootstrap-icons/-/bootstrap-icons-1.13.1.tgz"
+            },
+            "type": "npm-asset",
+            "installation-source": "dist",
+            "license": [
+                "MIT"
+            ],
+            "install-path": "../npm-asset/bootstrap-icons"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}
