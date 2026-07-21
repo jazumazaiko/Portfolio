@@ -1,543 +1,831 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sygnorey Azuma · IT Portfolio</title>
 
-    <!-- Favicon (simple code icon as data URI) -->
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23667eea'%3E%3Cpath d='M8 3L2 9L8 15L9.5 13.5L5 9L9.5 4.5L8 3ZM16 3L14.5 4.5L19 9L14.5 13.5L16 15L22 9L16 3ZM12 9L10 15H14L12 9Z'/%3E%3C/svg%3E"
-    />
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23667eea'%3E%3Cpath d='M8 3L2 9L8 15L9.5 13.5L5 9L9.5 4.5L8 3ZM16 3L14.5 4.5L19 9L14.5 13.5L16 15L22 9L16 3ZM12 9L10 15H14L12 9Z'/%3E%3C/svg%3E" />
 
-    <!-- Bootstrap CSS (local from Composer) -->
-    <link
-      rel="stylesheet"
-      href="vendor/npm-asset/bootstrap/dist/css/bootstrap.min.css"
-    />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="vendor/npm-asset/bootstrap/dist/css/bootstrap.min.css" />
 
-    <!-- Bootstrap Icons (local from Composer) -->
-    <link
-      rel="stylesheet"
-      href="vendor/npm-asset/bootstrap-icons/font/bootstrap-icons.css"
-    />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="vendor/npm-asset/bootstrap-icons/font/bootstrap-icons.css" />
 
-    <!-- Google Fonts for a creative touch -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-    <!-- Custom creative styles -->
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css" />
-  </head>
+</head>
 
-  <body>
-    <!-- 
-      ======================
-      STICKY NAVIGATION BAR
-      ======================
-    -->
-    <nav
-      class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
-    >
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="#">
-          <i class="bi bi-code-square me-2 text-primary"></i>Portfolio
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
+<body>
+
+    <!-- ===== CUSTOM CURSOR ===== -->
+    <div class="cursor cursor-dot" id="cursorDot"></div>
+    <div class="cursor cursor-ring" id="cursorRing"></div>
+    <div class="cursor-trail" id="cursorTrail"></div>
+
+    <!-- ===== PARTICLES CANVAS ===== -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ===== FLOATING SHAPES ===== -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="bi bi-code-square me-2"></i>Portfolio
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#skills">Skills</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#trainings">Trainings</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
-            </li>
-          </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link" href="#trainings">Experience</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
         </div>
-      </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- 
-      ======================
-      HERO SECTION (HOME)
-      ======================
-      Picture on left, details on right, with creative gradient
-    -->
-    <section id="home" class="hero-section py-5">
-      <div class="container py-5">
-        <div class="row align-items-center">
-          <!-- Left column: picture -->
-          <div class="col-md-4 text-center text-md-start mb-4 mb-md-0">
-            <img
-              src="mypicture.png"
-              alt="Sygnorey Azuma"
-              class="rounded-circle img-fluid border border-4 border-white shadow"
-              style="width: 330px; height: 330px; object-fit: cover"
-            />
-          </div>
-          <!-- Right column: name, title, address, button -->
-          <div class="col-md-8 text-white">
-            <h1 class="display-4 fw-bold gradient-text">
-              Sygnorey Jazze Q. Azuma
-            </h1>
-            <p class="lead">
-              Junior Web Developer (JAVASCRIPT/HTML/CSS/PHP/PYTHON)
-            </p>
-            <p class="mt-3">
-              <i class="bi bi-geo-alt-fill me-2"></i>Brgy. Dongalo, San
-              Ildefonso, Ilocos Sur
-            </p>
-            <a
-              href="Sygnorey_Jazze_Q_Azuma_CV.pdf"
-              download
-              class="btn btn-light btn-lg mt-3 px-5 py-3 rounded-pill shadow"
-            >
-              <i class="bi bi-download me-2"></i>Download CV
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 
-      ======================
-      ABOUT SECTION (Objective + Education)
-      ======================
-    -->
-    <section id="about" class="py-5">
-      <div class="container py-4">
-        <div class="row">
-          <div class="col-lg-12">
-            <h2 class="display-6 fw-semibold mb-4">
-              <i class="bi bi-bullseye text-primary me-3"></i>Career Objective
-            </h2>
-            <p class="lead text-secondary">
-              Motivated Information Technology graduate seeking an entry-level
-              position as a <strong>Junior Developer</strong> or
-              <strong>IT Support Specialist</strong>. Eager to apply strong
-              foundation in
-              <strong>web development (PHP, JavaScript, Node.js)</strong> and
-              <strong>database management (MySQL)</strong>
-              to contribute to innovative projects and support organizational
-              efficiency.
-            </p>
-          </div>
-        </div>
-
-        <div class="row mt-5">
-          <div class="col-12">
-            <h2 class="display-6 fw-semibold mb-4">
-              <i class="bi bi-mortarboard text-primary me-3"></i>Educational
-              Background
-            </h2>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body">
-                <div class="d-flex align-items-center mb-3">
-                  <i class="bi bi-building fs-1 text-primary me-3"></i>
-                  <h5 class="card-title mb-0">
-                    University of Northern Philippines (UNP)
-                  </h5>
+<!-- ===== HERO ===== -->
+<section id="home" class="hero">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <!-- Left: Image -->
+            <div class="col-lg-5 text-center text-lg-start reveal-left">
+                <div class="hero-image-wrapper">
+                    <img src="mypicture.png" alt="Sygnorey Azuma" class="hero-image" id="heroImage" />
                 </div>
-                <h6 class="card-subtitle mb-2 text-muted">
-                  Bachelor of Information Technology (Expected Graduation: 2026)
-                </h6>
-                <p class="card-text">
-                  2022 – Present · City of Vigan, Ilocos Sur
+            </div>
+
+            <!-- Right: Content -->
+            <div class="col-lg-7">
+                <div class="hero-badge">
+                    <i class="bi bi-code-slash me-1"></i> Available for opportunities
+                </div>
+
+                <h1 class="hero-title">
+                    I'm <span class="gradient-text">Sygnorey Azuma</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    <span class="typing-text" id="typingText"></span>
+                    <br />
+                    <span class="highlight">Full-Stack Developer</span> · IT Graduate ·
+                    <span class="highlight">Problem Solver</span>
                 </p>
-                <ul class="list-unstyled">
-                  <li>
-                    <i class="bi bi-check-circle-fill text-primary me-2"></i>1st
-                    Year (A.Y. 2022-2023)
-                  </li>
-                  <li>
-                    <i class="bi bi-check-circle-fill text-primary me-2"></i>2nd
-                    Year (A.Y. 2023-2024)
-                  </li>
-                  <li>
-                    <i class="bi bi-check-circle-fill text-primary me-2"></i>3rd
-                    Year (A.Y. 2024-2025)
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body">
-                <div class="d-flex align-items-center mb-3">
-                  <i class="bi bi-building fs-1 text-primary me-3"></i>
-                  <h5 class="card-title mb-0">
-                    Divine Word College of Vigan (DWCV)
-                  </h5>
-                </div>
-                <h6 class="card-subtitle mb-2 text-muted">
-                  Junior High School – Senior High School
-                </h6>
-                <p class="card-text">2016 – 2022 · City of Vigan, Ilocos Sur</p>
-                <p class="mb-0">
-                  <span class="badge bg-primary">With Honors</span> (S.Y.
-                  2021-2022, Senior High School)
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body">
-                <div class="d-flex align-items-center mb-3">
-                  <i class="bi bi-building fs-1 text-primary me-3"></i>
-                  <h5 class="card-title mb-0">Sagsagat Elementary School</h5>
-                </div>
-                <h6 class="card-subtitle mb-2 text-muted">Elementary</h6>
-                <p class="card-text">2010 – 2016 · San Ildefonso, Ilocos Sur</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- 
-      ======================
-      SKILLS SECTION (Technical, Soft, Other)
-      ======================
-    -->
-    <section id="skills" class="py-5 bg-light">
-      <div class="container py-4">
-        <div class="text-center mb-5">
-          <h2 class="display-6 fw-semibold">
-            <i class="bi bi-stars text-primary me-3"></i>Skills
-          </h2>
-          <p class="text-muted">What I bring to the table</p>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <a href="Sygnorey_Jazze_Q_Azuma_CV.pdf" download class="btn btn-glow">
+                        <i class="bi bi-download me-2"></i>Download CV
+                    </a>
+                    <a href="#contact" class="btn btn-outline-glow">
+                        <i class="bi bi-chat me-2"></i>Get In Touch
+                    </a>
+                </div>
+
+                <div class="hero-social">
+                    <a href="mailto:sygnoreyjazze@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
+                    <a href="tel:+639278016602" aria-label="Phone"><i class="bi bi-telephone"></i></a>
+                    <a href="https://github.com/jazumazaiko" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number" data-count="3">0</div>
+                        <div class="hero-stat-label">Years Coding</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number" data-count="12">0</div>
+                        <div class="hero-stat-label">Projects</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number" data-count="5">0</div>
+                        <div class="hero-stat-label">Certifications</div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag"><i class="bi bi-person me-1"></i> About Me</span>
+            <h2 class="section-title">Know Me <span class="gradient-text">Better</span></h2>
+            <p class="section-subtitle">Passionate IT graduate ready to build innovative solutions.</p>
+        </div>
+
         <div class="row g-4">
-          <!-- Technical Skills -->
-          <div class="col-md-6 col-lg-4">
-            <div class="card border-0 shadow-sm h-100">
-              <div class="card-body p-4">
-                <div class="d-flex align-items-center mb-4">
-                  <i class="bi bi-laptop display-6 text-primary me-3"></i>
-                  <h4 class="mb-0">Technical Skills</h4>
-                </div>
-                <div class="d-flex flex-wrap">
-                  <span class="skill-item">C#</span>
-                  <span class="skill-item">PHP</span>
-                  <span class="skill-item">Java</span>
-                  <span class="skill-item">VB.NET</span>
-                  <span class="skill-item">JavaScript</span>
-                  <span class="skill-item">Python</span>
-                  <span class="skill-item">HTML5</span>
-                  <span class="skill-item">CSS</span>
-                  <span class="skill-item">Bootstrap5</span>
-                  <span class="skill-item">SCSS</span>
-                  <span class="skill-item">Node.js</span>
-                  <span class="skill-item">MySQL</span>
-                  <span class="skill-item">XAMPP</span>
-                  <span class="skill-item">HeidiSQL</span>
-                  <span class="skill-item">Microsoft Office Suite</span>
-                  <span class="skill-item">Git</span>
-                  <span class="skill-item">Canva</span>
-                  <span class="skill-item">Nmap</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Soft Skills -->
-          <div class="col-md-6 col-lg-4">
-            <div class="card border-0 shadow-sm h-100">
-              <div class="card-body p-4">
-                <div class="d-flex align-items-center mb-4">
-                  <i class="bi bi-people display-6 text-primary me-3"></i>
-                  <h4 class="mb-0">Soft Skills</h4>
-                </div>
-                <div class="d-flex flex-wrap">
-                  <span class="skill-item">Problem-solving</span>
-                  <span class="skill-item">Analytical thinking</span>
-                  <span class="skill-item">Communication</span>
-                  <span class="skill-item">Teamwork</span>
-                  <span class="skill-item">Adaptability</span>
-                  <span class="skill-item">Creative design</span>
-                  <span class="skill-item">Graphic design</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Other Skills (IoT, Cybersecurity, AI-assisted) -->
-          <div class="col-md-6 col-lg-4">
-            <div class="card border-0 shadow-sm h-100">
-              <div class="card-body p-4">
-                <div class="d-flex align-items-center mb-4">
-                  <i
-                    class="bi bi-gear-wide-connected display-6 text-primary me-3"
-                  ></i>
-                  <h4 class="mb-0">Other Skills</h4>
-                </div>
-                <div class="d-flex flex-wrap">
-                  <span class="skill-item"
-                    >IoT (fundamentals & prototyping)</span
-                  >
-                  <span class="skill-item"
-                    >Cybersecurity basics (Nmap, Kali Linux)</span
-                  >
-                  <span class="skill-item"
-                    >AI-assisted development (DeepSeek, Claude)</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+            <div class="col-lg-7 reveal-left">
+                <p class="about-text">
+                    Motivated Information Technology graduate seeking an entry-level position as a
+                    <strong>Junior Developer</strong> or <strong>IT Support Specialist</strong>.
+                    Eager to apply strong foundation in
+                    <strong>web development (PHP, JavaScript, Node.js)</strong> and
+                    <strong>database management (MySQL)</strong>
+                    to contribute to innovative projects and support organizational efficiency.
+                </p>
 
-    <!-- 
-      ======================
-      TRAININGS & SEMINARS SECTION
-      ======================
-    -->
-    <section id="trainings" class="py-5">
-      <div class="container py-4">
-        <div class="text-center mb-5">
-          <h2 class="display-6 fw-semibold">
-            <i class="bi bi-journal-bookmark-fill text-primary me-3"></i
-            >Trainings & Seminars
-          </h2>
-          <p class="text-muted">Continuous learning and development</p>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <i class="bi bi-person"></i>
+                        <span><strong>Name:</strong> Sygnorey Jazze Q. Azuma</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-geo-alt"></i>
+                        <span><strong>Location:</strong> San Ildefonso, Ilocos Sur</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-envelope"></i>
+                        <span><strong>Email:</strong> sygnoreyjazze@gmail.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-phone"></i>
+                        <span><strong>Phone:</strong> 09278016602</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-mortarboard"></i>
+                        <span><strong>Education:</strong> B.S. IT (2026)</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-briefcase"></i>
+                        <span><strong>Experience:</strong> 1+ Year</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5 reveal-right">
+                <div class="glass-card p-4">
+                    <h5 class="fw-bold mb-3"><i class="bi bi-star-fill text-primary me-2"></i> Quick Facts</h5>
+                    <ul class="list-unstyled" style="color: var(--gray);">
+                        <li class="py-2 border-bottom border-white border-opacity-5">
+                            <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                            Top 10% of IT cohort
+                        </li>
+                        <li class="py-2 border-bottom border-white border-opacity-5">
+                            <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                            Outstanding Leadership Award
+                        </li>
+                        <li class="py-2 border-bottom border-white border-opacity-5">
+                            <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                            Excellence in Journalism (Silver)
+                        </li>
+                        <li class="py-2">
+                            <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                            Full-stack development &amp; IoT enthusiast
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag"><i class="bi bi-stars me-1"></i> Expertise</span>
+            <h2 class="section-title">My <span class="gradient-text">Skills</span></h2>
+            <p class="section-subtitle">Technologies and tools I work with.</p>
+        </div>
+
         <div class="row g-4">
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100 border-0 shadow-sm training-card">
-              <div class="card-body">
-                <div class="d-flex align-items-center mb-3">
-                  <i class="bi bi-cpu fs-1 text-primary me-3"></i>
-                  <h5 class="card-title mb-0">DYCI Robotics Seminar</h5>
+            <!-- Technical -->
+            <div class="col-md-4 reveal" style="transition-delay: 0.1s;">
+                <div class="skill-category">
+                    <span class="skill-category-icon"><i class="bi bi-laptop"></i></span>
+                    <h5 class="skill-category-title">Technical Skills</h5>
+                    <div>
+                        <span class="skill-tag primary">C#</span>
+                        <span class="skill-tag primary">PHP</span>
+                        <span class="skill-tag primary">Java</span>
+                        <span class="skill-tag primary">VB.NET</span>
+                        <span class="skill-tag primary">JavaScript</span>
+                        <span class="skill-tag primary">Python</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">Bootstrap 5</span>
+                        <span class="skill-tag">SCSS</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">XAMPP</span>
+                        <span class="skill-tag">HeidiSQL</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Canva</span>
+                        <span class="skill-tag">Nmap</span>
+                    </div>
                 </div>
-                <p class="text-muted mb-1">
-                  <i class="bi bi-geo-alt me-1"></i>Bocaue, Bulacan
-                </p>
-                <p class="text-muted">
-                  <i class="bi bi-calendar me-1"></i>April 23, 2025
-                </p>
-              </div>
             </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100 border-0 shadow-sm training-card">
-              <div class="card-body">
-                <div class="d-flex align-items-center mb-3">
-                  <i class="bi bi-lightning-charge fs-1 text-primary me-3"></i>
-                  <h5 class="card-title mb-0">HYTECH POWER INC. Seminar</h5>
-                </div>
-                <p class="text-muted mb-1">
-                  <i class="bi bi-geo-alt me-1"></i>Quezon City, Metro Manila
-                </p>
-                <p class="text-muted">
-                  <i class="bi bi-calendar me-1"></i>April 23, 2025
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100 border-0 shadow-sm training-card">
-              <div class="card-body">
-                <div class="d-flex align-items-center mb-3">
-                  <i class="bi bi-wifi fs-1 text-primary me-3"></i>
-                  <h5 class="card-title mb-0">Internet of Things</h5>
-                </div>
-                <p class="text-muted mb-1">
-                  <i class="bi bi-geo-alt me-1"></i>Quezon City, Metro Manila
-                </p>
-                <p class="text-muted">
-                  <i class="bi bi-calendar me-1"></i>April 24, 2025
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100 border-0 shadow-sm training-card">
-              <div class="card-body">
-                <div class="d-flex align-items-center mb-3">
-                  <i class="bi bi-shield-lock fs-1 text-primary me-3"></i>
-                  <h5 class="card-title mb-0">Cyber Security Seminar</h5>
-                </div>
-                <p class="text-muted mb-1">
-                  <i class="bi bi-geo-alt me-1"></i>University of Makati,
-                  Taguig, Metro Manila
-                </p>
-                <p class="text-muted">
-                  <i class="bi bi-calendar me-1"></i>April 25, 2025
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100 border-0 shadow-sm training-card">
-              <div class="card-body">
-                <div class="d-flex align-items-center mb-3">
-                  <i class="bi bi-brush fs-1 text-primary me-3"></i>
-                  <h5 class="card-title mb-0">
-                    Design Made Easy: A Beginner's Guide to Canva
-                  </h5>
-                </div>
-                <p class="text-muted mb-1">
-                  <i class="bi bi-globe me-1"></i>Online Seminar
-                </p>
-                <p class="text-muted">
-                  <i class="bi bi-calendar me-1"></i>May 24, 2025
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- 
-      ======================
-      CONTACT SECTION
-      ======================
-    -->
-    <section id="contact" class="contact-section py-5 text-white">
-      <div class="container py-4">
-        <div class="row">
-          <div class="col-lg-6 mx-auto text-center">
-            <h2 class="display-6 fw-semibold mb-4">
-              <i class="bi bi-envelope-paper me-3"></i>Get In Touch
-            </h2>
-            <p class="lead mb-5">
-              I'm currently looking for opportunities to grow and contribute.
-              Feel free to reach out!
-            </p>
-          </div>
-        </div>
-        <div class="row g-4 justify-content-center">
-          <div class="col-sm-6 col-md-4">
-            <div class="d-flex align-items-center justify-content-center">
-              <i class="bi bi-envelope-fill fs-3 me-3"></i>
-              <div>
-                <h6 class="mb-0">Email</h6>
-                <a
-                  href="mailto:sygnoreyjazze@gmail.com"
-                  class="text-white-50 text-decoration-none"
-                >
-                  sygnoreyjazze@gmail.com
-                </a>
-              </div>
+            <!-- Soft -->
+            <div class="col-md-4 reveal" style="transition-delay: 0.2s;">
+                <div class="skill-category">
+                    <span class="skill-category-icon"><i class="bi bi-people"></i></span>
+                    <h5 class="skill-category-title">Soft Skills</h5>
+                    <div>
+                        <span class="skill-tag primary">Problem-solving</span>
+                        <span class="skill-tag primary">Analytical thinking</span>
+                        <span class="skill-tag primary">Communication</span>
+                        <span class="skill-tag">Teamwork</span>
+                        <span class="skill-tag">Adaptability</span>
+                        <span class="skill-tag">Creative design</span>
+                        <span class="skill-tag">Graphic design</span>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-sm-6 col-md-4">
-            <div class="d-flex align-items-center justify-content-center">
-              <i class="bi bi-telephone-fill fs-3 me-3"></i>
-              <div>
-                <h6 class="mb-0">Phone</h6>
-                <a
-                  href="tel:+639278016602"
-                  class="text-white-50 text-decoration-none"
-                >
-                  09278016602
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4">
-            <div class="d-flex align-items-center justify-content-center">
-              <i class="bi bi-geo-alt-fill fs-3 me-3"></i>
-              <div>
-                <h6 class="mb-0">Address</h6>
-                <span class="text-white-50"
-                  >Brgy. Dongalo, San Ildefonso, Ilocos Sur</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Contact form (optional) -->
-        <div class="row mt-5 justify-content-center">
-          <div class="col-md-8 col-lg-6">
-            <form action="https://formspree.io/f/xojnykny" method="POST">
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <input
-                    type="text"
-                    name="name"
-                    class="form-control bg-transparent border-white text-white"
-                    placeholder="Your name"
-                    required
-                  />
-                </div>
-                <div class="col-md-6">
-                  <input
-                    type="email"
-                    name="email"
-                    class="form-control bg-transparent border-white text-white"
-                    placeholder="Your email"
-                    required
-                  />
-                </div>
-                <div class="col-12">
-                  <textarea
-                    name="message"
-                    class="form-control bg-transparent border-white text-white"
-                    rows="4"
-                    placeholder="Your message"
-                    required
-                  ></textarea>
-                </div>
-                <div class="col-12 text-center">
-                  <button
-                    type="submit"
-                    class="btn btn-light px-5 py-2 rounded-pill"
-                  >
-                    <i class="bi bi-send me-2"></i>Send Message
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- 
-      ======================
-      FOOTER
-      ======================
-    -->
-    <footer class="footer py-4 text-white-50 text-center">
-      <div class="container">
+            <!-- Other -->
+            <div class="col-md-4 reveal" style="transition-delay: 0.3s;">
+                <div class="skill-category">
+                    <span class="skill-category-icon"><i class="bi bi-gear-wide-connected"></i></span>
+                    <h5 class="skill-category-title">Other Skills</h5>
+                    <div>
+                        <span class="skill-tag primary">IoT (ESP32)</span>
+                        <span class="skill-tag primary">Cybersecurity (Kali)</span>
+                        <span class="skill-tag primary">AI-Assisted Dev</span>
+                        <span class="skill-tag">Bluetooth Terminal</span>
+                        <span class="skill-tag">DeepSeek-TUI</span>
+                        <span class="skill-tag">Claude Code</span>
+                        <span class="skill-tag">Network Scanning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== EXPERIENCE / TRAININGS ===== -->
+<section id="trainings">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag"><i class="bi bi-briefcase me-1"></i> Experience</span>
+            <h2 class="section-title">Work &amp; <span class="gradient-text">Training</span></h2>
+            <p class="section-subtitle">Professional journey and continuous learning.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <h5 class="fw-bold mb-3 text-primary"><i class="bi bi-building me-2"></i>Professional</h5>
+
+                <div class="timeline-item reveal-left">
+                    <div class="badge-date">June 2026 – Present</div>
+                    <h5>Customer Service Representative</h5>
+                    <p class="location"><i class="bi bi-geo-alt"></i> Alorica (Amazon), San Nicolas, Ilocos Norte</p>
+                    <p>Handled 50+ inbound inquiries daily via phone, chat, email. Resolved orders, payments, returns with 95%+ satisfaction. Troubleshot technical issues &amp; collaborated with teams to refine knowledge base.</p>
+                </div>
+
+                <div class="timeline-item reveal-left" style="transition-delay: 0.1s;">
+                    <div class="badge-date">Jan 2026 – May 2026</div>
+                    <h5>Legislative Intern</h5>
+                    <p class="location"><i class="bi bi-geo-alt"></i> Provincial Government of Ilocos Sur</p>
+                    <p>Drafted inventory system outlines, managed 100+ official documents, operated high-volume office equipment (5,890+ pages), and supported IT systems discussions for public service solutions.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <h5 class="fw-bold mb-3 text-primary"><i class="bi bi-journal-bookmark-fill me-2"></i>Trainings &amp; Seminars</h5>
+
+                <div class="timeline-item reveal-right">
+                    <div class="badge-date">April 2025</div>
+                    <h5>DYCI Robotics Seminar</h5>
+                    <p class="location"><i class="bi bi-geo-alt"></i> Bocaue, Bulacan</p>
+                </div>
+
+                <div class="timeline-item reveal-right" style="transition-delay: 0.1s;">
+                    <div class="badge-date">April 2025</div>
+                    <h5>HYTEK Power Inc. Seminar</h5>
+                    <p class="location"><i class="bi bi-geo-alt"></i> Quezon City, Metro Manila</p>
+                </div>
+
+                <div class="timeline-item reveal-right" style="transition-delay: 0.2s;">
+                    <div class="badge-date">April 2025</div>
+                    <h5>Internet of Things (IoT) Seminar</h5>
+                    <p class="location"><i class="bi bi-geo-alt"></i> Quezon City, Metro Manila</p>
+                </div>
+
+                <div class="timeline-item reveal-right" style="transition-delay: 0.3s;">
+                    <div class="badge-date">April 2025</div>
+                    <h5>Cybersecurity Seminar</h5>
+                    <p class="location"><i class="bi bi-geo-alt"></i> University of Makati, Taguig</p>
+                </div>
+
+                <div class="timeline-item reveal-right" style="transition-delay: 0.4s;">
+                    <div class="badge-date">May 2025</div>
+                    <h5>Design Made Easy: Beginner's Guide to Canva</h5>
+                    <p class="location"><i class="bi bi-globe"></i> Online Seminar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag"><i class="bi bi-code-slash me-1"></i> Portfolio</span>
+            <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+            <p class="section-subtitle">Some of the work I've built.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4 reveal" style="transition-delay: 0.1s;">
+                <div class="project-card">
+                    <span class="icon"><i class="bi bi-bar-chart-fill"></i></span>
+                    <h5>Client Satisfaction System</h5>
+                    <p>Web-based feedback system with automated recommendations using data consolidation. Reduced manual reporting by 50%.</p>
+                    <div class="tech-stack">
+                        <span>PHP</span><span>jQuery</span><span>MySQL</span><span>Bootstrap 5</span><span>SCSS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 reveal" style="transition-delay: 0.2s;">
+                <div class="project-card">
+                    <span class="icon"><i class="bi bi-lightbulb"></i></span>
+                    <h5>IoT Smart Curtain System</h5>
+                    <p>ESP32-powered motorized curtain controlled via Bluetooth. Built a C# companion app for wireless control up to 10 meters.</p>
+                    <div class="tech-stack">
+                        <span>C#</span><span>ESP32</span><span>Bluetooth</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 reveal" style="transition-delay: 0.3s;">
+                <div class="project-card">
+                    <span class="icon"><i class="bi bi-shield-check"></i></span>
+                    <h5>Network Penetration Testing</h5>
+                    <p>Reconnaissance on lab networks using Kali Linux &amp; Nmap. Identified vulnerabilities and presented mitigation strategies.</p>
+                    <div class="tech-stack">
+                        <span>Kali Linux</span><span>Nmap</span><span>NSE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag"><i class="bi bi-envelope-paper me-1"></i> Contact</span>
+            <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+            <p class="section-subtitle">I'm currently looking for opportunities — feel free to reach out.</p>
+        </div>
+
+        <div class="contact-wrapper reveal">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <h5 class="fw-bold mb-4"><i class="bi bi-info-circle text-primary me-2"></i>Let's connect</h5>
+                    <div class="contact-item">
+                        <div class="icon"><i class="bi bi-envelope"></i></div>
+                        <div>
+                            <div class="label">Email</div>
+                            <a href="mailto:sygnoreyjazze@gmail.com" class="value">sygnoreyjazze@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon"><i class="bi bi-telephone"></i></div>
+                        <div>
+                            <div class="label">Phone</div>
+                            <a href="tel:+639278016602" class="value">09278016602</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon"><i class="bi bi-geo-alt"></i></div>
+                        <div>
+                            <div class="label">Address</div>
+                            <span class="value">Brgy. Dongalo, San Ildefonso, Ilocos Sur</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon"><i class="bi bi-github"></i></div>
+                        <div>
+                            <div class="label">GitHub</div>
+                            <a href="https://github.com/jazumazaiko" target="_blank" class="value">@jazumazaiko</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <form action="https://formspree.io/f/xojnykny" method="POST">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" name="name" class="form-control form-control-custom" placeholder="Your name" required />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" name="email" class="form-control form-control-custom" placeholder="Your email" required />
+                            </div>
+                            <div class="col-12">
+                                <input type="text" name="subject" class="form-control form-control-custom" placeholder="Subject" />
+                            </div>
+                            <div class="col-12">
+                                <textarea name="message" class="form-control form-control-custom" rows="4" placeholder="Your message" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-glow w-100">
+                                    <i class="bi bi-send me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="container text-center">
         <p class="mb-0">
-          <i class="bi bi-c-circle me-1"></i> 2025 Sygnorey Jazze Q. Azuma.
-          Built with Bootstrap 5 and creativity.
+            <i class="bi bi-c-circle me-1"></i> 2025 Sygnorey Jazze Q. Azuma.
+            Built with <i class="bi bi-heart-fill text-danger" style="font-size:0.8rem;"></i> and Bootstrap 5.
         </p>
-      </div>
-    </footer>
+    </div>
+</footer>
 
-    <!-- Bootstrap JS Bundle (local from Composer) -->
-    <script src="vendor/npm-asset/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+<!-- ===== BACK TO TOP ===== -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="bi bi-chevron-up"></i>
+</button>
+
+<!-- ===== BOOTSTRAP JS ===== -->
+<script src="vendor/npm-asset/bootstrap/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<!-- ===== MAIN SCRIPTS ===== -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // ========================================
+        // 1. CUSTOM CURSOR
+        // ========================================
+        const cursorDot = document.getElementById('cursorDot');
+        const cursorRing = document.getElementById('cursorRing');
+        const cursorTrail = document.getElementById('cursorTrail');
+
+        let mouseX = 0,
+            mouseY = 0;
+        let ringX = 0,
+            ringY = 0;
+        let trailX = 0,
+            trailY = 0;
+        let trailActive = false;
+
+        // Only enable custom cursor on non-touch devices
+        if (!('ontouchstart' in window) && window.innerWidth > 991) {
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+
+                cursorDot.style.left = mouseX + 'px';
+                cursorDot.style.top = mouseY + 'px';
+
+                // Smooth ring follow
+                ringX += (mouseX - ringX) * 0.12;
+                ringY += (mouseY - ringY) * 0.12;
+                cursorRing.style.left = ringX + 'px';
+                cursorRing.style.top = ringY + 'px';
+
+                // Trail
+                if (!trailActive) {
+                    trailActive = true;
+                    cursorTrail.classList.add('active');
+                }
+                trailX += (mouseX - trailX) * 0.05;
+                trailY += (mouseY - trailY) * 0.05;
+                const dist = Math.sqrt((mouseX - trailX) ** 2 + (mouseY - trailY) ** 2);
+                const size = Math.min(120, 40 + dist * 0.6);
+                cursorTrail.style.width = size + 'px';
+                cursorTrail.style.height = size + 'px';
+                cursorTrail.style.left = trailX + 'px';
+                cursorTrail.style.top = trailY + 'px';
+            });
+
+            // Hover effect on interactive elements
+            const hoverables = document.querySelectorAll('a, button, .btn, .nav-link, .skill-tag, .project-card, .timeline-item, .card, .contact-item');
+            hoverables.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorDot.classList.add('hover');
+                    cursorRing.classList.add('hover');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorDot.classList.remove('hover');
+                    cursorRing.classList.remove('hover');
+                });
+            });
+
+            // Hide cursor when leaving window
+            document.addEventListener('mouseleave', () => {
+                cursorDot.style.opacity = '0';
+                cursorRing.style.opacity = '0';
+                cursorTrail.classList.remove('active');
+                trailActive = false;
+            });
+            document.addEventListener('mouseenter', () => {
+                cursorDot.style.opacity = '1';
+                cursorRing.style.opacity = '1';
+            });
+        } else {
+            cursorDot.style.display = 'none';
+            cursorRing.style.display = 'none';
+            cursorTrail.style.display = 'none';
+        }
+
+        // ========================================
+        // 2. PARTICLES BACKGROUND
+        // ========================================
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let particleCount = 80;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = document.body.scrollHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2.5 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.5 + 0.15;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(102, 126, 234, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            // Draw connections
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 180) {
+                        const opacity = (1 - dist / 180) * 0.15;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(102, 126, 234, ${opacity})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(drawParticles);
+        }
+        drawParticles();
+
+        // ========================================
+        // 3. TYPING EFFECT
+        // ========================================
+        const typingText = document.getElementById('typingText');
+        const roles = [
+            'Junior Web Developer',
+            'Full-Stack Enthusiast',
+            'IT Graduate',
+            'Problem Solver',
+            'Tech Innovator'
+        ];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingDelay = 80;
+
+        function typeEffect() {
+            const current = roles[roleIndex];
+            if (isDeleting) {
+                typingText.textContent = current.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    setTimeout(typeEffect, 400);
+                    return;
+                }
+                setTimeout(typeEffect, 40);
+            } else {
+                typingText.textContent = current.substring(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === current.length) {
+                    isDeleting = true;
+                    setTimeout(typeEffect, 1800);
+                    return;
+                }
+                setTimeout(typeEffect, typingDelay + Math.random() * 30);
+            }
+        }
+        setTimeout(typeEffect, 600);
+
+        // ========================================
+        // 4. SCROLL REVEAL (Intersection Observer)
+        // ========================================
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ========================================
+        // 5. COUNTER ANIMATION
+        // ========================================
+        const counters = document.querySelectorAll('.hero-stat-number');
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.getAttribute('data-count'));
+                    let current = 0;
+                    const increment = target / 60;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            entry.target.textContent = target + '+';
+                            clearInterval(timer);
+                        } else {
+                            entry.target.textContent = Math.floor(current);
+                        }
+                    }, 25);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(c => counterObserver.observe(c));
+
+        // ========================================
+        // 6. NAVBAR SCROLL EFFECT
+        // ========================================
+        const navbar = document.getElementById('mainNav');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScroll > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Back to top button
+            const backBtn = document.getElementById('backToTop');
+            if (currentScroll > 400) {
+                backBtn.classList.add('visible');
+            } else {
+                backBtn.classList.remove('visible');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // ========================================
+        // 7. BACK TO TOP
+        // ========================================
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ========================================
+        // 8. NAV LINK ACTIVE STATE
+        // ========================================
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]');
+
+        window.addEventListener('scroll', function() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ========================================
+        // 9. SMOOTH NAV SCROLL (prevent default)
+        // ========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offsetTop = target.offsetTop - 70;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ========================================
+        // 10. 3D TILT ON CARDS (desktop only)
+        // ========================================
+        if (window.innerWidth > 991) {
+            const tiltCards = document.querySelectorAll('.project-card, .glass-card, .skill-category');
+            tiltCards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / centerY * -6;
+                    const rotateY = (x - centerX) / centerX * 6;
+                    this.style.transform =
+                        `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+                });
+            });
+        }
+
+        // ========================================
+        // 11. PARALLAX HERO IMAGE
+        // ========================================
+        const heroImage = document.getElementById('heroImage');
+        if (heroImage) {
+            document.addEventListener('mousemove', function(e) {
+                const x = (e.clientX / window.innerWidth - 0.5) * 10;
+                const y = (e.clientY / window.innerHeight - 0.5) * 10;
+                heroImage.style.transform = `translate(${x}px, ${y}px) scale(1.02)`;
+            });
+            document.addEventListener('mouseleave', function() {
+                heroImage.style.transform = 'translate(0, 0) scale(1)';
+            });
+        }
+
+        console.log('🚀 Portfolio initialized with all animations!');
+    });
+</script>
+
+</body>
+
 </html>
